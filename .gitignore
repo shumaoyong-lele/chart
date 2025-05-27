@@ -1,0 +1,22 @@
+# Python编译文件和缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 打包文件
+dist/
+build/
+*.egg-info/
+
+# 编辑器临时文件
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# PyInstaller生成的可执行文件
+*.exe
