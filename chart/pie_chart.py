@@ -20,7 +20,6 @@ except ImportError as e:
 
 def pie_chart(labels, sizes, title):
     """生成饼图的主函数"""
-    print("正在生成饼图...")
     
     # 设置中文字体
     try:

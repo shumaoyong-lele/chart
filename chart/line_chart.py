@@ -22,7 +22,6 @@ except ImportError as e:
 
 def line_chart(xlabel, ylabel, xdata, ydata, title):
     """生成折线图的主函数"""
-    print("正在生成折线图...")
     
     # 设置中文字体
     try:

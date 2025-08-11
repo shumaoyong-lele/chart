@@ -3,11 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# 打包文件
-dist/
-build/
-*.egg-info/
-
 # 编辑器临时文件
 .idea/
 .vscode/
