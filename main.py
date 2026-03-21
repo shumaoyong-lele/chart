@@ -1,4 +1,8 @@
 def main():
+    # 检查配置文件
+    from config_manager import get_config
+    config = get_config()
+    print(f"\n✅ 用户 ID: {config.get('uid', 'unknown')}")
     print("===========欢迎使用统计图制作系统===========")
 
     while True:

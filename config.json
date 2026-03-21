@@ -1,0 +1,8 @@
+{
+  "uid": 123456,
+  "supabase": {
+    "project_ref": "bmtmanijtqhnuvmrehvw",
+    "db_url": "postgresql://postgres:DzPF0HZ0PeJP4kb1@db.bmtmanijtqhnuvmrehvw.supabase.co:5432/postgres",
+    "use_supabase": true
+  }
+}

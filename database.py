@@ -3,14 +3,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import func
 import json
+import os
 
-# 尝试导入配置文件
-try:
-    from config import SUPABASE_DB_URL, USE_SUPABASE
-except ImportError:
-    # 默认配置
-    SUPABASE_DB_URL = None
-    USE_SUPABASE = False
+# 导入配置管理器
+from config_manager import get_config
 
 Base = declarative_base()
 
@@ -41,12 +37,16 @@ class DatabaseManager:
                    格式: postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres
         """
         if db_url is None:
-            # 如果配置文件中指定使用 Supabase，则使用 Supabase
-            if USE_SUPABASE and SUPABASE_DB_URL:
-                db_url = SUPABASE_DB_URL
+            # 加载配置
+            config = get_config()
+            
+            if config and config.get('supabase', {}).get('use_supabase', False):
+                db_url = config['supabase']['db_url']
+                self.uid = config.get('uid', 'unknown')
             else:
                 # 默认使用本地 SQLite（开发用）
                 db_url = 'sqlite:///charts.db'
+                self.uid = 'local'
 
         self.engine = create_engine(db_url, echo=False)
         Base.metadata.create_all(self.engine)
