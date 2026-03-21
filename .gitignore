@@ -15,5 +15,3 @@ Thumbs.db
 
 # PyInstaller生成的可执行文件
 *.exe
-
-install.*
