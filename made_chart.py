@@ -12,6 +12,19 @@ def made_chart():
         return
 
     title = input("请输入图表标题：")
+    username = input("请输入您的用户名（用于记录创建者）：") or "user"
+    
+    # 询问是否保存为文件
+    save_file = input("是否将图表保存为图片文件？(y/n): ").strip().lower()
+    save_path = None
+    if save_file == 'y' or save_file == 'yes' or save_file == '是':
+        save_filename = input("请输入保存文件名（如：chart.png）: ").strip()
+        if save_filename:
+            # 确保文件名以 .png 或 .jpg 结尾
+            if not save_filename.endswith(('.png', '.jpg', '.jpeg')):
+                save_filename += '.png'
+            save_path = save_filename
+    
     types = input("请选择图表类型([0]折线图/[1]柱状图/[2]圆饼图/[3]复式折线图):")
 
     if types == "折线图" or types == "0":
@@ -25,7 +38,10 @@ def made_chart():
             print(f"错误: x轴数据数量({len(xdata)})与y轴数据数量({len(ydata)})不匹配")
             return
         print("正在制作折线图...")
-        line_chart(xlabel, ylabel, xdata, ydata, title)
+        line_chart(xlabel, ylabel, xdata, ydata, title, save_path=save_path)
+        # 保存到数据库
+        from database import db
+        db.save_chart(title, "line", xdata, ydata, created_by=username)
 
     elif types == "柱状图" or types == "1":
         xlabel = input("请输入x轴标签(如:产品): ")
@@ -38,7 +54,10 @@ def made_chart():
             print(f"错误: x轴数据数量({len(xdata)})与y轴数据数量({len(ydata)})不匹配")
             return
         print("正在制作柱状图...")
-        bar_chart(xlabel, ylabel, xdata, ydata, title)
+        bar_chart(xlabel, ylabel, xdata, ydata, title, save_path=save_path)
+        # 保存到数据库
+        from database import db
+        db.save_chart(title, "bar", xdata, ydata, created_by=username)
 
     elif types == "圆饼图" or types == "2":
         print("请输入各部分标签(用空格分隔，如:苹果 香蕉 橙子):")
@@ -52,7 +71,10 @@ def made_chart():
             print("错误: 各部分大小总和必须大于0")
             return
         print("正在制作圆饼图...")
-        pie_chart(labels, sizes, title)
+        pie_chart(labels, sizes, title, save_path=save_path)
+        # 保存到数据库
+        from database import db
+        db.save_chart(title, "pie", labels, sizes, created_by=username)
 
     elif types == "复式折线图" or types == "3":
         xlabel = input("请输入x轴标签(如:月份): ")
@@ -80,6 +102,9 @@ def made_chart():
             return
 
         print("正在制作复式折线图...")
-        multi_line_chart(xlabel, ylabel, xdata, ydata_list, labels, title)
+        multi_line_chart(xlabel, ylabel, xdata, ydata_list, labels, title, save_path=save_path)
+        # 保存到数据库
+        from database import db
+        db.save_chart(title, "multi_line", xdata, ydata_list[0], labels=labels, created_by=username)
     else:
         print("输入错误，请重新选择！")

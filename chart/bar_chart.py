@@ -7,10 +7,13 @@
 - xdata: x轴数据列表
 - ydata: y轴数据列表
 - title: 图表标题
+- save_path: 保存路径（可选）
 """
 
 print("正在导入必要的库...")
 try:
+    import matplotlib
+    matplotlib.use('Agg')  # 使用非交互式后端
     import matplotlib.pyplot as plt
     from utils.font_utils import configure_fonts
     print("库导入完成！")
@@ -19,7 +22,7 @@ except ImportError as e:
     print("请检查是否安装了matplotlib库。")
     exit()
 
-def bar_chart(xlabel, ylabel, xdata, ydata, title):
+def bar_chart(xlabel, ylabel, xdata, ydata, title, save_path=None):
     """生成柱状图的主函数"""
     if len(xdata) != len(ydata):
         print(f"错误: x轴数据长度({len(xdata)})与y轴数据长度({len(ydata)})不一致")
@@ -40,4 +43,10 @@ def bar_chart(xlabel, ylabel, xdata, ydata, title):
     plt.ylabel(ylabel, fontsize=12)
     plt.grid(True, linestyle="--", alpha=0.3)
     plt.tight_layout()
+    
+    # 保存为文件
+    if save_path:
+        plt.savefig(save_path, dpi=150, bbox_inches='tight')
+        print(f"✅ 图表已保存到: {save_path}")
+    
     plt.show()
