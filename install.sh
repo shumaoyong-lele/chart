@@ -26,7 +26,7 @@ PROJECT_URL="https://github.com/shumaoyong-lele/chart/"
 VENV_PATH=".venv"
 VENV_PYTHON="$VENV_PATH/bin/python"
 VENV_PIP="$VENV_PATH/bin/pip"
-PACKAGES=("matplotlib" "squarify")
+PACKAGES=("matplotlib" "squarify" "flask" "sqlalchemy" "psycopg2-binary")
 
 echo ""
 echo "========================================"

@@ -11,7 +11,7 @@ $projectUrl = "https://github.com/shumaoyong-lele/chart/"
 $venvPath = ".venv"
 $venvPython = ".\$venvPath\Scripts\python"
 $venvPip = ".\$venvPath\Scripts\pip"
-$packages = @("matplotlib", "squarify")
+$packages = @("matplotlib", "squarify", "flask", "sqlalchemy", "psycopg2-binary")
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan

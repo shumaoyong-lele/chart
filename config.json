@@ -1,8 +1,15 @@
 {
-  "uid": 123456,
-  "supabase": {
-    "project_ref": "bmtmanijtqhnuvmrehvw",
-    "db_url": "postgresql://postgres:DzPF0HZ0PeJP4kb1@db.bmtmanijtqhnuvmrehvw.supabase.co:5432/postgres",
-    "use_supabase": true
-  }
+	"uid": 123456,
+	"supabase": {
+		"project_ref": "bmtmanijtqhnuvmrehvw",
+		"db_url": "postgresql://postgres:DzPF0HZ0PeJP4kb1@db.bmtmanijtqhnuvmrehvw.supabase.co:5432/postgres",
+		"use_supabase": true
+	},
+	"email": {
+		"smtp_host": "smtp.qq.com",
+		"smtp_port": 587,
+		"smtp_user": "lele_mail2014@qq.com",
+		"smtp_password": "kmaiknudnaqwcfeh",
+		"use_tls": true
+	}
 }
